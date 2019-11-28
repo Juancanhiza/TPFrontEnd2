@@ -1,5 +1,6 @@
 package py.com.eko.fisiocenter;
 
+import py.com.eko.fisiocenter.Modelos.Reserva;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;

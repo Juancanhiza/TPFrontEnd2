@@ -25,6 +25,9 @@ public class Persona implements Serializable, Parcelable
     @SerializedName("telefono")
     @Expose
     private Object telefono;
+    @SerializedName("idLocal")
+    @Expose
+    private Local idLocalDefecto;
     @SerializedName("seguroMedico")
     @Expose
     private Object seguroMedico;
@@ -314,4 +317,11 @@ public class Persona implements Serializable, Parcelable
         return 0;
     }
 
+    public Local getIdLocalDefecto() {
+        return idLocalDefecto;
+    }
+
+    public void setIdLocalDefecto(Local idLocalDefecto) {
+        this.idLocalDefecto = idLocalDefecto;
+    }
 }
