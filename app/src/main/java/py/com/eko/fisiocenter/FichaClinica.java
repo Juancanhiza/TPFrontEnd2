@@ -1,6 +1,7 @@
 package py.com.eko.fisiocenter;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -20,11 +21,13 @@ public class FichaClinica extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ficha_clinica);
-//        ListView simpleList;
-//        simpleList = (ListView) findViewById(R.id.simpleListView);
-//        String[] myStringArray = {"hola que tal", "como estas", "todo bien y vos", "esto es una prueba"};
-//        ArrayAdapter adapter = new ArrayAdapter<String>(this,R.layout.item_lista,R.id.textView,myStringArray);
-//        simpleList.setAdapter(adapter);
+
+        rvFichaClinica=findViewById(R.id.rvCategoria);
+
+        LinearLayoutManager llm=new LinearLayoutManager(this);
+        rvFichaClinica.setLayoutManager(llm);
+        rvFichaClinica.setHasFixedSize(true);
+
     }
 
     @Override

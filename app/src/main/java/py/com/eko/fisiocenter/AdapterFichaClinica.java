@@ -36,9 +36,12 @@ public class AdapterFichaClinica extends RecyclerView.Adapter<AdapterFichaClinic
 
     @Override
     public void onBindViewHolder(@NonNull AdapterFichaClinicaHolder holder, int position) {
-        holder.tvIdFichaClinica.setText(lista[position].getIdFichaClinica());
-        holder.tvDiagnostico.setText(lista[position].getDiagnostico());
-        holder.tvMotivo.setText(lista[position].getMotivo());
+        if(lista[position].getIdFichaClinica()!=null)
+            holder.tvIdFichaClinica.setText(lista[position].getIdFichaClinica().toString());
+        if(lista[position].getDiagnostico()!=null)
+            holder.tvDiagnostico.setText(lista[position].getDiagnostico());
+        if(lista[position].getMotivo()!=null)
+            holder.tvMotivo.setText(lista[position].getMotivo());
 
     }
 
