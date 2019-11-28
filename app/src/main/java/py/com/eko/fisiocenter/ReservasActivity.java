@@ -15,11 +15,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 
 public class ReservasActivity extends AppCompatActivity {
 
     RecyclerView rvReserva;
     Reserva[] array;
+    ProgressBar pbCargando;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,8 @@ public class ReservasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reservas);
 
         rvReserva=findViewById(R.id.rvReservas);
+        pbCargando = findViewById(R.id.cargandoReservas);
+        pbCargando.setVisibility(View.VISIBLE);
 
         LinearLayoutManager llm=new LinearLayoutManager(this);
         rvReserva.setLayoutManager(llm);
@@ -47,8 +51,12 @@ public class ReservasActivity extends AppCompatActivity {
                             " y descripcion " + c.getObservacion());
                 }
 
+                pbCargando.setVisibility(View.INVISIBLE);
+
                 array = response.body().getLista();
                 cargarLista();
+
+
             }
 
             @Override
