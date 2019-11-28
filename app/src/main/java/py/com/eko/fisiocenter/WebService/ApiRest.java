@@ -16,6 +16,9 @@ public interface ApiRest {
     Call<Lista<Reserva>> obtenerReservas(@Query("orderBy") String orderBy,
                                          @Query("orderDir") String orderDir);
 
+    @GET("reserva")
+    Call<Lista<Reserva>> obtenerReservasSimple();
+
     @GET("categoria")
     Call<Lista<Categoria>> obtenerCategorias(@Query("orderBy") String orderBy,
                                              @Query("orderDir") String orderDir);
