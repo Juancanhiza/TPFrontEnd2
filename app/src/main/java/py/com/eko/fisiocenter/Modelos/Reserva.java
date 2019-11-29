@@ -7,7 +7,7 @@ import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Reserva implements Serializable, Parcelable
+public class Reserva implements Serializable
 {
 
     @SerializedName("idReserva")
@@ -39,13 +39,13 @@ public class Reserva implements Serializable, Parcelable
     private Object idFichaClinica;
     @SerializedName("idLocal")
     @Expose
-    private Integer idLocal;
+    private Local idLocal;
     @SerializedName("idCliente")
     @Expose
-    private Integer idCliente;
+    private Persona idCliente;
     @SerializedName("idEmpleado")
     @Expose
-    private Integer idEmpleado;
+    private Persona idEmpleado;
     @SerializedName("fechaCadena")
     @Expose
     private String fechaCadena;
@@ -61,43 +61,7 @@ public class Reserva implements Serializable, Parcelable
     @SerializedName("horaFinCadena")
     @Expose
     private String horaFinCadena;
-    public final static Parcelable.Creator<Reserva> CREATOR = new Creator<Reserva>() {
 
-
-        @SuppressWarnings({
-                "unchecked"
-        })
-        public Reserva createFromParcel(Parcel in) {
-            return new Reserva(in);
-        }
-
-        public Reserva[] newArray(int size) {
-            return (new Reserva[size]);
-        }
-
-    }
-            ;
-    private final static long serialVersionUID = -3313912433718721402L;
-
-    protected Reserva(Parcel in) {
-        this.idReserva = ((Integer) in.readValue((Integer.class.getClassLoader())));
-        this.fecha = ((String) in.readValue((String.class.getClassLoader())));
-        this.horaInicio = ((String) in.readValue((String.class.getClassLoader())));
-        this.horaFin = ((String) in.readValue((String.class.getClassLoader())));
-        this.fechaHoraCreacion = ((String) in.readValue((String.class.getClassLoader())));
-        this.flagEstado = ((String) in.readValue((String.class.getClassLoader())));
-        this.flagAsistio = ((Object) in.readValue((Object.class.getClassLoader())));
-        this.observacion = ((String) in.readValue((String.class.getClassLoader())));
-        this.idFichaClinica = ((Object) in.readValue((Object.class.getClassLoader())));
-        this.idLocal = ((Integer) in.readValue((Integer.class.getClassLoader())));
-        this.idCliente = ((Integer) in.readValue((Integer.class.getClassLoader())));
-        this.idEmpleado = ((Integer) in.readValue((Integer.class.getClassLoader())));
-        this.fechaCadena = ((String) in.readValue((String.class.getClassLoader())));
-        this.fechaDesdeCadena = ((Object) in.readValue((Object.class.getClassLoader())));
-        this.fechaHastaCadena = ((Object) in.readValue((Object.class.getClassLoader())));
-        this.horaInicioCadena = ((String) in.readValue((String.class.getClassLoader())));
-        this.horaFinCadena = ((String) in.readValue((String.class.getClassLoader())));
-    }
 
     public Reserva() {
     }
@@ -174,27 +138,27 @@ public class Reserva implements Serializable, Parcelable
         this.idFichaClinica = idFichaClinica;
     }
 
-    public Integer getIdLocal() {
+    public Local getIdLocal() {
         return idLocal;
     }
 
-    public void setIdLocal(Integer idLocal) {
+    public void setIdLocal(Local idLocal) {
         this.idLocal = idLocal;
     }
 
-    public Integer getIdCliente() {
+    public Persona getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(Integer idCliente) {
+    public void setIdCliente(Persona idCliente) {
         this.idCliente = idCliente;
     }
 
-    public Integer getIdEmpleado() {
+    public Persona getIdEmpleado() {
         return idEmpleado;
     }
 
-    public void setIdEmpleado(Integer idEmpleado) {
+    public void setIdEmpleado(Persona idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
 
@@ -236,30 +200,6 @@ public class Reserva implements Serializable, Parcelable
 
     public void setHoraFinCadena(String horaFinCadena) {
         this.horaFinCadena = horaFinCadena;
-    }
-
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(idReserva);
-        dest.writeValue(fecha);
-        dest.writeValue(horaInicio);
-        dest.writeValue(horaFin);
-        dest.writeValue(fechaHoraCreacion);
-        dest.writeValue(flagEstado);
-        dest.writeValue(flagAsistio);
-        dest.writeValue(observacion);
-        dest.writeValue(idFichaClinica);
-        dest.writeValue(idLocal);
-        dest.writeValue(idCliente);
-        dest.writeValue(idEmpleado);
-        dest.writeValue(fechaCadena);
-        dest.writeValue(fechaDesdeCadena);
-        dest.writeValue(fechaHastaCadena);
-        dest.writeValue(horaInicioCadena);
-        dest.writeValue(horaFinCadena);
-    }
-
-    public int describeContents() {
-        return 0;
     }
 
 }
