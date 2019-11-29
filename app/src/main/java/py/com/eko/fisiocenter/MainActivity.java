@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         Button button= (Button) findViewById(R.id.btnChangeActivity);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,FichaClinica.class));
+                startActivity(new Intent(MainActivity.this, FichaClinicaActivity.class));
             }
         });
     }
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Lista<Categoria>> call, Throwable t) {
-                Log.w("warning", t.getCause().toString());
+                Log.w("warning", t);
             }
         });
     }

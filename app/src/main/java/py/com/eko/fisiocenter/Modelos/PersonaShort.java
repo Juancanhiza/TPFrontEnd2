@@ -1,9 +1,9 @@
-package py.com.eko.fisiocenter;
+package py.com.eko.fisiocenter.Modelos;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Persona {
+public class PersonaShort {
     @SerializedName("idPersona")
     @Expose
     private Integer idPesona;
@@ -14,7 +14,7 @@ public class Persona {
     @Expose
     private String apellido;
 
-    public Persona() {
+    public PersonaShort() {
     }
 
     public Integer getIdPesona() {
@@ -34,5 +34,8 @@ public class Persona {
     }
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+    public String getNombreCompleto() {
+        return nombre + ' ' + apellido;
     }
 }
