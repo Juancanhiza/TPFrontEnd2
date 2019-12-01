@@ -27,6 +27,10 @@ public interface ApiRest {
     @GET("reserva")
     Call<Lista<Reserva>> obtenerReservasSimple();
 
+    @GET("reserva")
+    Call<Lista<Reserva>> obtenerReservasFilter(@Query("ejemplo") JSONObject obj);
+
+
     @GET("categoria")
     Call<Lista<Categoria>> obtenerCategorias(@Query("orderBy") String orderBy,
                                              @Query("orderDir") String orderDir);
