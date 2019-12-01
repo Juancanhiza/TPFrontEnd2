@@ -9,7 +9,6 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,12 +21,19 @@
         android:text="Ficha Clinica" />
 
         <Button
-            android:id="@+id/btnReservaActiviy"
+            android:id="@+id/btnReservaActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Reserva" />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/btnPacienteActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pacientes" />
+
+</LinearLayout>
+
 
 
 </RelativeLayout>

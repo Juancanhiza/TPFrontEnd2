@@ -15,21 +15,25 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity"
-            android:label="@string/app_name"
-            >
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".PacientesActivity"></activity>
+        <activity android:name=".PacienteAddEditActivity" />
+        <activity android:name=".FichaClinicaAddActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>>
+            </intent-filter>
+            >
         </activity>
         <activity android:name=".ReservasActivity" />
-        <activity android:name=".FichaClinicaAddEdit" />
-        <activity android:name=".FichaClinica" />
-        <activity android:name=".MainActivity">
-        </activity>
+        <activity android:name=".FichaClinicaEditActivity" />
+        <activity android:name=".FichaClinicaActivity" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

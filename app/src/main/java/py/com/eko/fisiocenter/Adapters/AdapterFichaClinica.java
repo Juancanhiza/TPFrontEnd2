@@ -1,4 +1,4 @@
-package py.com.eko.fisiocenter;
+package py.com.eko.fisiocenter.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+import py.com.eko.fisiocenter.Modelos.FichaClinica;
+import py.com.eko.fisiocenter.R;
 
 public class AdapterFichaClinica extends RecyclerView.Adapter<AdapterFichaClinica.AdapterFichaClinicaHolder>
         implements View.OnClickListener{
@@ -16,9 +17,9 @@ public class AdapterFichaClinica extends RecyclerView.Adapter<AdapterFichaClinic
 
     private View.OnClickListener listener;
 
-    FichaClinicaModel[] lista;
+    FichaClinica[] lista;
 
-    public AdapterFichaClinica(FichaClinicaModel[] lista) {
+    public AdapterFichaClinica(FichaClinica[] lista) {
         this.lista=lista;
     }
 
@@ -26,7 +27,7 @@ public class AdapterFichaClinica extends RecyclerView.Adapter<AdapterFichaClinic
     @Override
     public AdapterFichaClinicaHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v= LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_lista, parent,false);
+                .inflate(R.layout.item_lista_ficha_clinica, parent,false);
         v.setOnClickListener(this);
         AdapterFichaClinicaHolder ac=new AdapterFichaClinicaHolder(v);
 
@@ -36,13 +37,18 @@ public class AdapterFichaClinica extends RecyclerView.Adapter<AdapterFichaClinic
 
     @Override
     public void onBindViewHolder(@NonNull AdapterFichaClinicaHolder holder, int position) {
-        if(lista[position].getIdFichaClinica()!=null)
-            holder.tvIdFichaClinica.setText(lista[position].getIdFichaClinica().toString());
         if(lista[position].getDiagnostico()!=null)
-            holder.tvDiagnostico.setText(lista[position].getDiagnostico());
+            holder.tvDiagnostico.setText("Diagnóstico: " +lista[position].getDiagnostico());
         if(lista[position].getMotivo()!=null)
-            holder.tvMotivo.setText(lista[position].getMotivo());
-
+            holder.tvMotivo.setText("Motivo: " + lista[position].getMotivo());
+        if(lista[position].getCliente()!=null)
+            holder.tvCliente.setText("Paciente: "  + lista[position].getCliente().getNombreCompleto());
+        if(lista[position].getMedico()!=null)
+            holder.tvMedico.setText("Médico: " + lista[position].getMedico().getNombreCompleto());
+        if(lista[position].getFechaHora()!=null)
+            holder.tvFechaHora.setText( lista[position].getFechaHora());
+        if(lista[position].getFechaHora()!=null)
+            holder.tvTipoProducto.setText( "Tipo producto: " + lista[position].getIdTipoProducto().getNombreCategoria());
     }
 
     @Override
@@ -66,12 +72,20 @@ public class AdapterFichaClinica extends RecyclerView.Adapter<AdapterFichaClinic
         TextView tvDiagnostico;
         TextView tvMedico;
         TextView tvCliente;
+        TextView tvFechaHora;
+        TextView tvTipoProducto;
+
 
         public AdapterFichaClinicaHolder(View v){
             super(v);
             tvIdFichaClinica=v.findViewById(R.id.txtIdFichaClinicaItem);
             tvMotivo=v.findViewById(R.id.txtMotivo);
             tvDiagnostico=v.findViewById(R.id.txtDiagnostico);
+            tvMedico=v.findViewById(R.id.txtMedico);
+            tvCliente=v.findViewById(R.id.txtCliente);
+            tvFechaHora=v.findViewById(R.id.txtFecha);
+            tvTipoProducto=v.findViewById(R.id.txtTipoProducto);
+
         }
     }
 }

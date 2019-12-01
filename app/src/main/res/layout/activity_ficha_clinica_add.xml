@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FichaClinicaAddActivity"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Agregar ficha clínica"
+        android:textSize="24sp"
+        android:textStyle="bold|italic" />
+
+    <EditText
+        android:id="@+id/addFichaClinicaCliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Cliente"
+        android:focusable="false"/>
+    <EditText
+        android:id="@+id/addFichaClinicaMedico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Médico"
+        android:focusable="false"/>
+    <EditText
+        android:id="@+id/addFichaClinicaTipoProducto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Tipo de producto"
+        android:focusable="false"/>
+    <EditText
+        android:id="@+id/addFichaClinicaMotivo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Motivo"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"/>
+    <EditText
+        android:id="@+id/addFichaClinicaDiagnostico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Diagnóstico"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"/>
+    <EditText
+        android:id="@+id/addFichaClinicaObservacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Observación"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="right">
+        <Button
+            android:id="@+id/btnAddFichaClinica"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Agregar"
+            android:background="@drawable/btn_style"
+            android:textColor="@color/colorBlanco"/>
+
+    </LinearLayout>
+</LinearLayout>

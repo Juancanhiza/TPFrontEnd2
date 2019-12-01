@@ -26,16 +26,28 @@ public class MainActivity extends AppCompatActivity {
         Button button= (Button) findViewById(R.id.btnChangeActivity);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,FichaClinica.class));
+                startActivity(new Intent(MainActivity.this, FichaClinicaActivity.class));
             }
         });
 
-        Button btnReserva= (Button) findViewById(R.id.btnReservaActiviy);
+        Button btnReserva= (Button) findViewById(R.id.btnReservaActivity);
         btnReserva.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,ReservasActivity.class));
             }
+
         });
+
+        Button btnPaciente= (Button) findViewById(R.id.btnPacienteActivity);
+        btnPaciente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,PacientesActivity.class));
+            }
+
+        });
+
 
     }
 

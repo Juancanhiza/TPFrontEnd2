@@ -31,40 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         password=findViewById(R.id.txtPassword);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
 
-
-        Call<Lista<Persona>> callR = Servicios.getServicio().getListaUsuarios("{\"soloUsuariosDelSistema\":true}");
-        callR.enqueue(new Callback<Lista<Persona>>() {
-            @Override
-            public void onResponse(Call<Lista<Persona>> call, Response<Lista<Persona>> response) {
-                /*for (Persona c : response.body().getLista()) {
-                    Log.d("w", "fichaclinica de id " + c.getIdReserva().toString() +
-                            " y descripcion " + c.getObservacion());
-                }
-
-                pbCargando.setVisibility(View.INVISIBLE);
-
-                 */
-                arrayUsuarios = response.body().getLista();
-                nombres = new String[arrayUsuarios.length];
-
-                for(int i=0 ; i< arrayUsuarios.length ; i++){
-                    nombres[i] = arrayUsuarios[i].getUsuarioLogin();
-                }
-
-
-            }
-
-            @Override
-            public void onFailure(Call<Lista<Persona>> call, Throwable t) {
-                Log.e("Login", t.getLocalizedMessage());
-            }
-        });
-
-    }
 
 
     public void ingresar(View view) {
