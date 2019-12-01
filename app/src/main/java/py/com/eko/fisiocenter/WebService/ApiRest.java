@@ -3,6 +3,7 @@ package py.com.eko.fisiocenter.WebService;
 import py.com.eko.fisiocenter.Modelos.Categoria;
 import py.com.eko.fisiocenter.Modelos.Lista;
 import py.com.eko.fisiocenter.Modelos.Reserva;
+import py.com.eko.fisiocenter.Modelos.Persona;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -28,4 +29,8 @@ public interface ApiRest {
 
     @PUT("categoria")
     Call<Categoria> actualizarCategoria(@Body Categoria categoria);
+
+    @GET("persona")
+    Call<Lista<Persona>> getListaUsuarios(@Query("orderBy") String usuariosSistema);
+
 }
