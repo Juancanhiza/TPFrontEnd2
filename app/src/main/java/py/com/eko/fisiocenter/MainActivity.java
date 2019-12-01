@@ -30,17 +30,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button btnReserva= (Button) findViewById(R.id.btnReservaActiviy);
+        Button btnReserva= (Button) findViewById(R.id.btnReservaActivity);
         btnReserva.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,ReservasActivity.class));
             }
 
-            @Override
-            public void onFailure(Call<Lista<Categoria>> call, Throwable t) {
-                Log.w("warning", t);
-            }
         });
+
+        Button btnPaciente= (Button) findViewById(R.id.btnPacienteActivity);
+        btnPaciente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,PacientesActivity.class));
+            }
+
+        });
+
 
     }
 

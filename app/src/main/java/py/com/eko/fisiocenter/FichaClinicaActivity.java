@@ -41,9 +41,9 @@ public class FichaClinicaActivity extends AppCompatActivity {
     py.com.eko.fisiocenter.Modelos.TipoProducto[] tipoProductos;
     EditText etFechaDesde;
     EditText etFechaHasta;
-    TextView tvMedico;
-    TextView tvPaciente;
-    TextView tvTipoProducto;
+    EditText tvMedico;
+    EditText tvPaciente;
+    EditText tvTipoProducto;
 
     String selectedFechaInicio = null;
     String selectedFechaFin = null;
@@ -263,6 +263,7 @@ public class FichaClinicaActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 String strName = arrayAdapter.getItem(which);
                 selectedMedico = medicos[which];
+                tvMedico.setText(strName);
                 AlertDialog.Builder builderInner = new AlertDialog.Builder(FichaClinicaActivity.this);
                 builderInner.setMessage(strName);
                 builderInner.setTitle("Has seleccionado a: ");
@@ -312,6 +313,7 @@ public class FichaClinicaActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 String strName = arrayAdapter.getItem(which);
                 selectedPaciente = pacientes[which];
+                tvPaciente.setText(strName);
                 AlertDialog.Builder builderInner = new AlertDialog.Builder(FichaClinicaActivity.this);
                 builderInner.setMessage(strName);
                 builderInner.setTitle("Has seleccionado a: ");
@@ -362,6 +364,7 @@ public class FichaClinicaActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 String strName = arrayAdapter.getItem(which);
                 selectedTipoProducto = tipoProductos[which];
+                tvTipoProducto.setText(strName);
                 AlertDialog.Builder builderInner = new AlertDialog.Builder(FichaClinicaActivity.this);
                 builderInner.setMessage(strName);
                 builderInner.setTitle("Has seleccionado a: ");
@@ -432,6 +435,12 @@ public class FichaClinicaActivity extends AppCompatActivity {
         selectedMedico = null;
         selectedPaciente = null;
         selectedTipoProducto = null;
+        
+        etFechaDesde.setText("");
+        etFechaHasta.setText("");
+        tvMedico.setText("");
+        tvPaciente.setText("");
+        tvTipoProducto.setText("");
         Call<Lista<FichaClinica>> callFichasClinicas = Servicios.getServicio().obtenerFichasClinicas();
         callFichasClinicas.enqueue(new Callback<Lista<py.com.eko.fisiocenter.Modelos.FichaClinica>>() {
             @Override

@@ -45,7 +45,10 @@
             android:id="@+id/btnEditFichaClinica"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Actualizar" />
+            android:text="Actualizar"
+            android:background="@drawable/btn_style"
+            android:textColor="@color/colorBlanco"
+            android:padding="4dp"/>
 
     </LinearLayout>
 

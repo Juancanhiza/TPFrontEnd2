@@ -5,6 +5,8 @@ import org.json.JSONObject;
 import py.com.eko.fisiocenter.Modelos.Categoria;
 import py.com.eko.fisiocenter.Modelos.FichaClinica;
 import py.com.eko.fisiocenter.Modelos.Lista;
+import py.com.eko.fisiocenter.Modelos.Paciente;
+import py.com.eko.fisiocenter.Modelos.Persona;
 import py.com.eko.fisiocenter.Modelos.PersonaShort;
 import py.com.eko.fisiocenter.Modelos.Reserva;
 import py.com.eko.fisiocenter.Modelos.TipoProducto;
@@ -57,6 +59,16 @@ public interface ApiRest {
 
     @GET("persona")
     Call<Lista<PersonaShort>> obtenerPersonas(@Query("ejemplo") JSONObject obj);
+
+    @Headers("Content-Type: application/json")
+    @POST("persona")
+    Call<Paciente> guardarPaciente(@Body Paciente obj);
+
+    @GET("persona")
+    Call<Lista<Paciente>> obtenerPacientesFilter(@Query("ejemplo") JSONObject obj, @Query("like") String like);
+
+    @GET("persona")
+    Call<Lista<Paciente>> obtenerPacientes();
 
     @GET("tipoProducto")
     Call<Lista<TipoProducto>> obtenerTipoProductos();

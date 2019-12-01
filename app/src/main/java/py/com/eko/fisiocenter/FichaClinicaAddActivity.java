@@ -255,7 +255,7 @@ public class FichaClinicaAddActivity extends AppCompatActivity {
         String diagnosticoText = diagnostico.getText().toString();
 
 
-        if(motivoText != null && observacionText != null && diagnosticoText != null && selectedMedico != null
+        if(motivoText.equals("") && observacionText.equals("") && diagnosticoText.equals("") && selectedMedico != null
         && selectedPaciente != null && selectedTipoProducto != null){
             f.setObservacion(observacionText);
             f.setMotivo(motivoText);

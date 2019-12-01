@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".PacienteAddEditActivity"
+android:layout_margin="10dp"
+android:orientation="vertical">
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Agregar paciente"
+    android:textSize="24sp"
+    android:textStyle="bold|italic" />
+
+<EditText
+    android:id="@+id/addPacienteNombre"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="textPersonName"
+    android:hint="Nombre" />
+<EditText
+    android:id="@+id/addPacienteApellido"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="textPersonName"
+    android:hint="Apellido"/>
+<EditText
+    android:id="@+id/addPacienteCedula"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="textPersonName"
+    android:hint="Cédula"/>
+<EditText
+    android:id="@+id/addPacienteRUC"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="textPersonName"
+    android:hint="RUC"/>
+<EditText
+    android:id="@+id/addPacienteTelefono"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="textPersonName"
+    android:hint="Teléfono"/>
+<EditText
+    android:id="@+id/addPacienteEmail"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="textPersonName"
+    android:hint="Email"/>
+<EditText
+    android:id="@+id/addPacienteFechaNacimiento"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="textPersonName"
+    android:hint="Fecha de Nacimiento"
+    android:focusable="false"/>
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="right">
+    <Button
+        android:id="@+id/btnAddPaciente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar"
+        android:background="@drawable/btn_style"
+        android:textColor="@color/colorBlanco"/>
+
+</LinearLayout>
+</LinearLayout>

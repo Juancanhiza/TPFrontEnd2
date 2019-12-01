@@ -27,7 +27,7 @@ public class AdapterFichaClinica extends RecyclerView.Adapter<AdapterFichaClinic
     @Override
     public AdapterFichaClinicaHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v= LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_lista, parent,false);
+                .inflate(R.layout.item_lista_ficha_clinica, parent,false);
         v.setOnClickListener(this);
         AdapterFichaClinicaHolder ac=new AdapterFichaClinicaHolder(v);
 
