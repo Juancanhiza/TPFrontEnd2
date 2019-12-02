@@ -1,6 +1,8 @@
 package py.com.eko.fisiocenter;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
 import py.com.eko.fisiocenter.Modelos.Categoria;
 import py.com.eko.fisiocenter.Modelos.Lista;
 import py.com.eko.fisiocenter.Modelos.Reserva;
@@ -23,14 +25,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button= (Button) findViewById(R.id.btnChangeActivity);
+        CardView button= (CardView) findViewById(R.id.card_fichas);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, FichaClinicaActivity.class));
             }
         });
 
-        Button btnReserva= (Button) findViewById(R.id.btnReservaActivity);
+        CardView btnReserva= (CardView) findViewById(R.id.card_reservas);
         btnReserva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        Button btnPaciente= (Button) findViewById(R.id.btnPacienteActivity);
+        CardView btnPaciente= (CardView) findViewById(R.id.card_pacientes);
         btnPaciente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

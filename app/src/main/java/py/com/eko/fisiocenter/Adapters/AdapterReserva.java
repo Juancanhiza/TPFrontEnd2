@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import py.com.eko.fisiocenter.Modelos.Reserva;
 import py.com.eko.fisiocenter.R;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class AdapterReserva extends RecyclerView.Adapter<AdapterReserva.AdapterReservaHolder>
@@ -41,8 +43,28 @@ public class AdapterReserva extends RecyclerView.Adapter<AdapterReserva.AdapterR
         if(lista[position].getIdReserva()!=null)
             holder.tvIdReserva.setText(lista[position].getIdReserva().toString());
         if(lista[position].getObservacion()!=null)
-            holder.tvObservacion.setText(lista[position].getObservacion());
+            holder.tvObservacion.setText("Observacion: "  +lista[position].getObservacion());
+        if(lista[position].getIdCliente()!=null)
+            holder.tvCliente.setText("Paciente: "  + lista[position].getIdCliente().getNombreCompleto());
+        if(lista[position].getIdEmpleado()!=null)
+            holder.tvMedico.setText("Medico: " + lista[position].getIdEmpleado().getNombreCompleto());
+        if(lista[position].getIdEmpleado()!=null) {
+            String fecha = lista[position].getFechaCadena();
+            fecha = fecha.substring(6,8)+'/'+fecha.substring(4,6)+'/'+fecha.substring(0,4);
+            holder.tvFecha.setText("Fecha: " + fecha);
+        }
+        if(lista[position].getHoraInicioCadena()!=null && lista[position].getHoraFinCadena()!=null){
 
+            String horaInicio = lista[position].getHoraInicioCadena().substring(0,2)+":"+
+                                lista[position].getHoraInicioCadena().substring(2,4);
+
+            String horaFin = lista[position].getHoraFinCadena().substring(0,2)+":"+
+                    lista[position].getHoraFinCadena().substring(2,4);
+
+            holder.tvHoraIF.setText("Horario: "+
+                    horaInicio+" - "+
+                    horaFin);
+        }
     }
 
     @Override
@@ -64,10 +86,18 @@ public class AdapterReserva extends RecyclerView.Adapter<AdapterReserva.AdapterR
     public static class AdapterReservaHolder extends RecyclerView.ViewHolder {
         TextView tvIdReserva;
         TextView tvObservacion;
+        TextView tvMedico;
+        TextView tvCliente;
+        TextView tvFecha;
+        TextView tvHoraIF;//hora inicio-fin
 
         public AdapterReservaHolder(View v){
             super(v);
             tvIdReserva=v.findViewById(R.id.txtIdReserva);
+            tvMedico=v.findViewById(R.id.txtMedico1);
+            tvCliente=v.findViewById(R.id.txtPaciente1);
+            tvFecha=v.findViewById(R.id.txtFecha1);
+            tvHoraIF=v.findViewById(R.id.txtHoraIF1);
             tvObservacion=v.findViewById(R.id.txtObservacion);
         }
     }

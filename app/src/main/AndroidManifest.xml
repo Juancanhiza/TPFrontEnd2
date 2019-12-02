@@ -19,7 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PacientesActivity"></activity>
+        <activity android:name=".ReservasEditActivity"></activity>
+        <activity android:name=".ReservasAddActivity" />
+        <activity android:name=".PacientesActivity" />
         <activity android:name=".PacienteAddEditActivity" />
         <activity android:name=".FichaClinicaAddActivity" />
         <activity
@@ -36,6 +38,10 @@
         <activity android:name=".FichaClinicaEditActivity" />
         <activity android:name=".FichaClinicaActivity" />
         <activity android:name=".MainActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
