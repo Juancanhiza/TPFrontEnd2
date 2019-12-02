@@ -87,7 +87,7 @@ public interface ApiRest {
             "usuario:gustavo"
     })
     @PUT("persona")
-    Call<Paciente> actualizarPaciente(@Body Paciente obj);
+    Call<Void> actualizarPaciente(@Body Paciente obj);
 
     @GET("persona")
     Call<Lista<Paciente>> obtenerPacientesFilter(@Query("ejemplo") JSONObject obj, @Query("like") String like);

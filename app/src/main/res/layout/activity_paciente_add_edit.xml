@@ -68,7 +68,7 @@ android:orientation="vertical">
         android:id="@+id/btnAddPaciente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Agregar"
+        android:text="Guardar"
         android:background="@drawable/btn_style"
         android:textColor="@color/colorBlanco"/>
 
