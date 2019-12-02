@@ -7,6 +7,7 @@ import py.com.eko.fisiocenter.Adapters.AdaparteReservarConsulta;
 import py.com.eko.fisiocenter.Adapters.AdapterReserva;
 import py.com.eko.fisiocenter.Modelos.FichaClinica;
 import py.com.eko.fisiocenter.Modelos.Lista;
+import py.com.eko.fisiocenter.Modelos.Persona;
 import py.com.eko.fisiocenter.Modelos.PersonaShort;
 import py.com.eko.fisiocenter.Modelos.Reserva;
 import py.com.eko.fisiocenter.WebService.Servicios;
@@ -195,10 +196,15 @@ public class ReservasAddActivity extends AppCompatActivity {
         r.setFechaCadena(selectedFecha);
         r.setHoraInicioCadena(r1.getHoraInicioCadena());
         r.setHoraFinCadena(r1.getHoraFinCadena());
-        r.setEmpleado(selectedMedico);
-        r.setCliente(selectedPaciente);
+        //r.setEmpleado(selectedMedico);
+        //r.setCliente(selectedPaciente);
+        Persona p1 = new Persona();
+        p1.setIdPersona(selectedMedico.getIdPesona());
+        Persona p2 = new Persona();
+        p2.setIdPersona(selectedPaciente.getIdPesona());
 
-
+        r.setIdEmpleado(p1);
+        r.setIdCliente(p2);
 
         Call<Reserva> createReserva = Servicios.getServicio().guardarReserva(r);
         createReserva.enqueue(new Callback<Reserva>() {
