@@ -51,6 +51,14 @@ public interface ApiRest {
     @GET("persona/{id}/agenda")
     Call<List<Reserva>> obtenerAgenda(@Path("id") int idMedico, @Query("fecha") String fecha,@Query("disponible") String disponible);
 
+    @Headers({
+            "Content-Type: application/json",
+            "usuario:gustavo"
+    })
+    @POST("reserva")
+    Call<Reserva> guardarReserva(@Body Reserva obj);
+
+
     @GET("categoria")
     Call<Lista<Categoria>> obtenerCategorias(@Query("orderBy") String orderBy,
                                              @Query("orderDir") String orderDir);

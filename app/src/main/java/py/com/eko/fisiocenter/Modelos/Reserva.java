@@ -10,6 +10,10 @@ import com.google.gson.annotations.SerializedName;
 public class Reserva implements Serializable
 {
 
+    @SerializedName("marcado")
+    @Expose
+    private Boolean marcado;
+
     @SerializedName("idReserva")
     @Expose
     private Integer idReserva;
@@ -40,6 +44,12 @@ public class Reserva implements Serializable
     @SerializedName("idLocal")
     @Expose
     private Local idLocal;
+    @SerializedName("Cliente")
+    @Expose
+    private PersonaShort Cliente;
+    @SerializedName("Empleado")
+    @Expose
+    private PersonaShort Empleado;
     @SerializedName("idCliente")
     @Expose
     private Persona idCliente;
@@ -61,7 +71,7 @@ public class Reserva implements Serializable
     @SerializedName("horaFinCadena")
     @Expose
     private String horaFinCadena;
-    
+
 
 
     public Reserva() {
@@ -203,4 +213,27 @@ public class Reserva implements Serializable
         this.horaFinCadena = horaFinCadena;
     }
 
+    public Boolean getMarcado() {
+        return marcado;
+    }
+
+    public void setMarcado(Boolean marcado) {
+        this.marcado = marcado;
+    }
+
+    public PersonaShort getEmpleado() {
+        return Empleado;
+    }
+
+    public void setEmpleado(PersonaShort empleado) {
+        Empleado = empleado;
+    }
+
+    public PersonaShort getCliente() {
+        return Cliente;
+    }
+
+    public void setCliente(PersonaShort cliente) {
+        Cliente = cliente;
+    }
 }

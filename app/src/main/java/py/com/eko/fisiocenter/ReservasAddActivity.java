@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import py.com.eko.fisiocenter.Adapters.AdaparteReservarConsulta;
 import py.com.eko.fisiocenter.Adapters.AdapterReserva;
+import py.com.eko.fisiocenter.Modelos.FichaClinica;
 import py.com.eko.fisiocenter.Modelos.Lista;
 import py.com.eko.fisiocenter.Modelos.PersonaShort;
 import py.com.eko.fisiocenter.Modelos.Reserva;
@@ -16,6 +17,7 @@ import retrofit2.Response;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,8 +26,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,6 +42,8 @@ public class ReservasAddActivity extends AppCompatActivity {
 
     List<Reserva> array;
 
+    Boolean checkead = false;
+
     PersonaShort[] medicos;
     PersonaShort[] pacientes;
 
@@ -46,9 +52,11 @@ public class ReservasAddActivity extends AppCompatActivity {
     EditText etMedico;
     TextView tvPaciente;
     EditText etFecha;
+    EditText etTicket;
     EditText etObservaciones;
     CheckBox cbDisponible;
     Button btnBuscar;
+    Button btnGuardar;
 
 
     String selectedFecha = null;
@@ -68,6 +76,10 @@ public class ReservasAddActivity extends AppCompatActivity {
         LinearLayoutManager llm=new LinearLayoutManager(this);
         rvTurnos.setLayoutManager(llm);
         rvTurnos.setHasFixedSize(true);
+
+
+        etTicket = findViewById(R.id.etNroTicket);
+        etObservaciones = findViewById(R.id.etObservaciones);
 
 
 
@@ -116,10 +128,106 @@ public class ReservasAddActivity extends AppCompatActivity {
         });
 
 
+        btnGuardar = findViewById(R.id.btnGuardar);
+        btnGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                guardar();
+            }
+        });
+
+
 
 
     }
 
+
+    private void guardar(){
+
+        /*JSONObject obj = new JSONObject();
+        if(selectedFecha != null){
+            try {
+                obj.put("fechaCadena",selectedFecha);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(etTicket.getText().toString()!=null){
+
+            Integer pos=Integer.parseInt(etTicket.getText().toString());
+            Reserva r = array.get(pos);
+
+            try {
+            obj.put("horaInicioCadena",r.getHoraInicioCadena());
+            obj.put("horaFinCadena",r.getHoraFinCadena());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            if(selectedMedico != null){
+                JSONObject per = new JSONObject();
+                try {
+                    per.put("idPersona", selectedMedico.getIdPesona());
+                    obj.put("idEmpleado", per);
+                }catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if(selectedPaciente != null){
+                JSONObject per = new JSONObject();
+                try {
+                    per.put("idPersona", selectedPaciente.getIdPesona());
+                    obj.put("idCliente", per);
+                }
+                catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }*/
+
+
+        Reserva r = new Reserva();
+        Integer pos=Integer.parseInt(etTicket.getText().toString());
+        Reserva r1 = array.get(pos);
+
+        r.setFechaCadena(selectedFecha);
+        r.setHoraInicioCadena(r1.getHoraInicioCadena());
+        r.setHoraFinCadena(r1.getHoraFinCadena());
+        r.setEmpleado(selectedMedico);
+        r.setCliente(selectedPaciente);
+
+
+
+        Call<Reserva> createReserva = Servicios.getServicio().guardarReserva(r);
+        createReserva.enqueue(new Callback<Reserva>() {
+            @Override
+            public void onResponse(Call<Reserva> call, Response<Reserva> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(getApplicationContext(),"Exito al guardar",Toast.LENGTH_LONG).show();
+                    Intent intentNewActivity = new Intent(ReservasAddActivity.this,
+                            ReservasActivity.class);
+                    startActivity(intentNewActivity);
+                }else{
+                    Toast.makeText(getApplicationContext(),"Error al guardar",Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<Reserva> call, Throwable t) {
+                Toast.makeText(getApplicationContext(),"Error al guardar",Toast.LENGTH_LONG).show();
+                Log.w("warning", t);
+            }
+        });
+
+
+
+        Log.d("filters", etTicket.getText().toString());
+
+
+
+
+    }
 
 
     private void filtrar(){
@@ -158,7 +266,21 @@ public class ReservasAddActivity extends AppCompatActivity {
         AdaparteReservarConsulta adapter= new AdaparteReservarConsulta(array);
         rvTurnos.setAdapter(adapter);
 
-        //svLista.setVisibility(View.VISIBLE);
+        adapter.setListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //RadioButton radioButton = v.findViewById(R.id.rbSelecionado);
+
+                //if(radioButton.isChecked()){
+                  //  checkead = true;
+                   // Log.println(Log.DEBUG,"yayaya","Cool");
+                //}
+
+
+            }
+        });
+                //svLista.setVisibility(View.VISIBLE);
 
     }
 

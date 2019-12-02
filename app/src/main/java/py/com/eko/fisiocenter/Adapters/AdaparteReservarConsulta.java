@@ -19,6 +19,7 @@ public class AdaparteReservarConsulta extends
     implements View.OnClickListener
 {
 
+    private int[] checkedList;
 
     private View.OnClickListener listener;
 
@@ -26,6 +27,7 @@ public class AdaparteReservarConsulta extends
 
     public AdaparteReservarConsulta(List<Reserva> lista) {
         this.lista=lista;
+        checkedList = new int[lista.size()];
     }
 
     @NonNull
@@ -53,12 +55,13 @@ public class AdaparteReservarConsulta extends
 
         if(lista.get(position).getIdCliente()!=null){
             holder.tvDisponibilidad.setText("Ocupado");
-            holder.rb.setEnabled(false);
+            //holder.rb.setEnabled(false);
         }else{
             holder.tvDisponibilidad.setText("Libre");
         }
 
-        final AdaparteReservarConsultaHolder contexto = holder;
+        holder.tvTicket.setText("Nro: "+position);
+
 
 
     }
@@ -88,7 +91,8 @@ public class AdaparteReservarConsulta extends
         TextView tvHoraIni;
         TextView tvHoraFin;
         TextView tvDisponibilidad;
-        RadioButton rb;
+        //RadioButton rb;
+        TextView tvTicket;
 
 
         public AdaparteReservarConsultaHolder(View v){
@@ -96,7 +100,8 @@ public class AdaparteReservarConsulta extends
             tvHoraIni=v.findViewById(R.id.txtHoraIni);
             tvHoraFin=v.findViewById(R.id.txtHoraFin);
             tvDisponibilidad=v.findViewById(R.id.txtDisponiblidad);
-            rb = v.findViewById(R.id.rbSelecionado);
+           // rb = v.findViewById(R.id.rbSelecionado);
+            tvTicket = v.findViewById(R.id.tvTicket);
         }
     }
 

@@ -33,10 +33,17 @@
             android:id="@+id/txtDisponiblidad"
             android:textSize="17sp"
             android:textStyle="bold"/>
-       <RadioButton
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvTicket"
+            android:textSize="17sp"
+            android:textStyle="bold"/>
+ <!--      <RadioButton
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:id="@+id/rbSelecionado"></RadioButton>
+           -->
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
