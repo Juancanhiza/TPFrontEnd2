@@ -6,9 +6,9 @@ import com.google.gson.annotations.SerializedName;
 import java.io.File;
 
 public class Archivo {
-    @SerializedName("idFichaClinica")
+    @SerializedName("idFichaArchivo")
     @Expose
-    private Integer idFichaClinica;
+    private Integer idFichaArchivo;
     @SerializedName("nombre")
     @Expose
     private String nombre;
@@ -18,11 +18,11 @@ public class Archivo {
 
     public Archivo(){}
     public Integer getIdFichaClinica() {
-        return idFichaClinica;
+        return idFichaArchivo;
     }
 
     public void setIdFichaClinica(Integer idFichaClinica) {
-        this.idFichaClinica = idFichaClinica;
+        this.idFichaArchivo = idFichaClinica;
     }
 
     public String getNombre() {

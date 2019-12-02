@@ -144,15 +144,15 @@ public class PacientesActivity extends AppCompatActivity {
     private void cargarLista(){
         AdapterPacientes adapter= new AdapterPacientes(array);
         rvPacientes.setAdapter(adapter);
-//        adapter.setListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Intent intentNewActivity = new Intent(PacientesActivity.this,
-//                        PacienteAddEditActivity.class);
-//                intentNewActivity.putExtra("objeto", array[rvPacientes.getChildAdapterPosition(v)]);
-//                startActivity(intentNewActivity);
-//            }
-//        });
+        adapter.setListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intentNewActivity = new Intent(PacientesActivity.this,
+                        PacienteAddEditActivity.class);
+                intentNewActivity.putExtra("objeto", array[rvPacientes.getChildAdapterPosition(v)]);
+                startActivity(intentNewActivity);
+            }
+        });
     }
 }

@@ -101,7 +101,7 @@ public interface ApiRest {
             "usuario:gustavo"
     })
     @PUT("persona")
-    Call<Paciente> actualizarPaciente(@Body Paciente obj);
+    Call<Void> actualizarPaciente(@Body Paciente obj);
 
     @GET("persona")
     Call<Lista<Paciente>> obtenerPacientesFilter(@Query("ejemplo") JSONObject obj, @Query("like") String like);
@@ -121,7 +121,10 @@ public interface ApiRest {
     Call<Lista<Archivo>> getArchivo(@Query("orderBy") String orderBy,
                                              @Query("orderDir") String orderDir);
 
+    @GET("fichaArchivo")
+    Call<Lista<Archivo>> getArchivos(@Query("idFichaClinica") Integer id);
+
     @DELETE("fichaArchivo/{id}")
-    Call<String> deleteArchivo(@Path("id") Integer idFicha);
+    Call<Void> deleteArchivo(@Path("id") Integer idFichaArchivo);
 
 }

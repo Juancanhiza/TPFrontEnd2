@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import py.com.eko.fisiocenter.Modelos.FichaClinica;
@@ -178,13 +179,19 @@ public class PacienteAddEditActivity extends AppCompatActivity {
         p.setRuc(edRuc.getText().toString());
         p.setTelefono(edTelefono.getText().toString());
         p.setEmail(edEmail.getText().toString());
-        p.setFechaNacimiento(edFechaNacimiento.getText().toString() + " 00:00:00");
+        if(edFechaNacimiento.getText().toString().equals("")){
+            String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+            p.setFechaNacimiento(timeStamp + " 00:00:00");
+
+        }else{
+            p.setFechaNacimiento(edFechaNacimiento.getText().toString() + " 00:00:00");
+        }
         p.setTipoPersona("FISICA");
 
-        Call<Paciente> updatePaciente = Servicios.getServicio().actualizarPaciente(p);
-        updatePaciente.enqueue(new Callback<Paciente>() {
+        Call<Void> updatePaciente = Servicios.getServicio().actualizarPaciente(p);
+        updatePaciente.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Paciente> call, Response<Paciente> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(getApplicationContext(),"Exito al editar",Toast.LENGTH_LONG).show();
                     Intent intentNewActivity = new Intent(PacienteAddEditActivity.this,
@@ -196,7 +203,7 @@ public class PacienteAddEditActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Paciente> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 Toast.makeText(getApplicationContext(),"Error al guardar",Toast.LENGTH_LONG).show();
                 Log.w("warning", t);
             }
