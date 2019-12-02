@@ -24,10 +24,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AdapterArchivo extends RecyclerView.Adapter<AdapterArchivo.AdapterArchivoHolder> {
+public class AdapterArchivo extends RecyclerView.Adapter<AdapterArchivo.AdapterArchivoHolder>
+        implements View.OnClickListener{
 
-
-
+    private View.OnClickListener listener;
 
     Archivo[] lista;
 
@@ -39,8 +39,8 @@ public class AdapterArchivo extends RecyclerView.Adapter<AdapterArchivo.AdapterA
     @Override
     public AdapterArchivoHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v= LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_lista_paciente, parent,false);
-
+                .inflate(R.layout.item_lista_archivo, parent,false);
+        v.setOnClickListener(this);
         AdapterArchivoHolder ac=new AdapterArchivoHolder(v);
 
         return ac;
@@ -50,17 +50,11 @@ public class AdapterArchivo extends RecyclerView.Adapter<AdapterArchivo.AdapterA
     @Override
     public void onBindViewHolder(@NonNull AdapterArchivoHolder holder, final int position) {
         if(lista[position].getIdFichaClinica()!=null)
-            holder.tvFichaId.setText("Ficha " + lista[position].getIdFichaClinica());
+            holder.tvFichaId.setText("Archivo " + lista[position].getIdFichaClinica());
         if(lista[position].getNombre()!=null)
             holder.tvNombre.setText(lista[position].getNombre());
         if(lista[position].getUrlImagen()!=null)
             holder.tvUrl.setText(lista[position].getUrlImagen());
-        holder.btnEliminar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                deleteArchivo(lista[position].getIdFichaClinica());
-            }
-        });
     }
 
     @Override
@@ -68,44 +62,26 @@ public class AdapterArchivo extends RecyclerView.Adapter<AdapterArchivo.AdapterA
         return lista.length;
     }
 
+    @Override
+    public void onClick(View v) {
+        listener.onClick(v);
+    }
 
+    public void setListener(View.OnClickListener listener) {
+        this.listener = listener;
+    }
 
     public static class AdapterArchivoHolder extends RecyclerView.ViewHolder {
         TextView tvFichaId;
         TextView tvUrl;
         TextView tvNombre;
-        Button btnEliminar;
-
 
         public AdapterArchivoHolder(View v){
             super(v);
             tvNombre=v.findViewById(R.id.txtArchivoNombre);
             tvFichaId=v.findViewById(R.id.txtArchivoFichaId);
             tvUrl=v.findViewById(R.id.txtArchivoURL);
-            btnEliminar=v.findViewById(R.id.buttonEliminarArchivo);
-
         }
     }
 
-    public void deleteArchivo(Integer idFicha){
-        Call<String> callArchivo = Servicios.getServicio().deleteArchivo(idFicha);
-        callArchivo.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if(response.isSuccessful()){
-//                    Toast.makeText(this,"Exito al guardar",Toast.LENGTH_LONG).show();
-//                    Intent intentNewActivity = new Intent(FichaClinicaAddActivity.this,
-//                            FichaClinicaActivity.class);
-//                    startActivity(intentNewActivity);
-                }else{
-//                    Toast.makeText(getApplicationContext(),"Error al guardar",Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.w("warning", t);
-            }
-        });
-    }
 }

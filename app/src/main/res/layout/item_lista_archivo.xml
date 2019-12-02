@@ -36,13 +36,5 @@
             android:textStyle="bold"
             android:textColor="@color/colorAzul"/>
 
-        <Button
-            android:id="@+id/buttonEliminarArchivo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Eliminar archivo"
-            android:background="@drawable/btn_style"
-            android:textColor="@color/colorBlanco"
-            android:padding="4dp"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
