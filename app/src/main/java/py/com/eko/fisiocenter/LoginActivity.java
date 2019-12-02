@@ -6,11 +6,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.util.Log;
+import py.com.eko.fisiocenter.Modelos.PersonaShort;
+import py.com.eko.fisiocenter.Modelos.Lista;
+import py.com.eko.fisiocenter.WebService.Servicios;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
 
     EditText usuario;
     EditText password;
+    String[] nombress;
+    PersonaShort[] medicos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,12 +32,44 @@ public class LoginActivity extends AppCompatActivity {
 
         usuario=findViewById(R.id.txtNombreUsuario);
         password=findViewById(R.id.txtPassword);
+
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("soloUsuariosDelSistema", true);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Call<Lista<PersonaShort>> callMedicos = Servicios.getServicio().obtenerPersonas(obj);
+        callMedicos.enqueue(new Callback<Lista<PersonaShort>>() {
+            @Override
+            public void onResponse(Call<Lista<PersonaShort>> call, Response<Lista<PersonaShort>> response) {
+                medicos = response.body().getLista();
+
+            }
+
+            @Override
+            public void onFailure(Call<Lista<PersonaShort>> call, Throwable t) {
+                Log.w("warning", t);
+            }
+        });
     }
+
+
+
 
     public void ingresar(View view) {
 
-        if (usuario.getText().toString().equals("admin")
-                && password.getText().toString().equals("123")) {
+        String user = usuario.getText().toString();
+        String pass = password.getText().toString();
+        Boolean bn = false;
+        for(int i = 0; i < medicos.length; i++) {
+            if (user.equals(medicos[i].getNombre()))
+            {
+                bn=true;
+            }
+        }
+
+        if (bn==true) {
 
             Intent intentNewActivity = new Intent(LoginActivity.this, MainActivity.class);
             Bundle b = new Bundle();
@@ -33,6 +78,11 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intentNewActivity);
 
 
+        }else {
+
+            Toast.makeText(this, "Usuario o contraseña incorrecto", Toast.LENGTH_LONG).show();
+            usuario.setText("");
+            password.setText("");
         }
     }
 }
