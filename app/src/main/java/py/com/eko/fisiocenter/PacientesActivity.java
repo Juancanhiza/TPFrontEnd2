@@ -47,7 +47,7 @@ public class PacientesActivity extends AppCompatActivity {
 
         Button btnBuscar = findViewById(R.id.btnBuscarPaciente);
         Button btnLimpiarFiltro = findViewById(R.id.btnLimpiarFiltrosPaciente);
-
+        Button btnAddPaciente = findViewById(R.id.btnAgregarPaciente);
         btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,6 +66,14 @@ public class PacientesActivity extends AppCompatActivity {
             }
         });
 
+        btnAddPaciente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentNewActivity = new Intent(PacientesActivity.this,
+                        PacienteAddEditActivity.class);
+                startActivity(intentNewActivity);
+            }
+        });
         tvNoResults = findViewById(R.id.txtNoResultsPaciente);
         tvNoResults.setVisibility(View.GONE);
     }
@@ -136,15 +144,15 @@ public class PacientesActivity extends AppCompatActivity {
     private void cargarLista(){
         AdapterPacientes adapter= new AdapterPacientes(array);
         rvPacientes.setAdapter(adapter);
-        adapter.setListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intentNewActivity = new Intent(PacientesActivity.this,
-                        PacienteAddEditActivity.class);
-                intentNewActivity.putExtra("objeto", array[rvPacientes.getChildAdapterPosition(v)]);
-                startActivity(intentNewActivity);
-            }
-        });
+//        adapter.setListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Intent intentNewActivity = new Intent(PacientesActivity.this,
+//                        PacienteAddEditActivity.class);
+//                intentNewActivity.putExtra("objeto", array[rvPacientes.getChildAdapterPosition(v)]);
+//                startActivity(intentNewActivity);
+//            }
+//        });
     }
 }
