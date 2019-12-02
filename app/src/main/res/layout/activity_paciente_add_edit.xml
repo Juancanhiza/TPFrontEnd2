@@ -9,11 +9,12 @@ android:layout_margin="10dp"
 android:orientation="vertical">
 
 <TextView
+    android:id="@+id/textAddPaciente"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="Agregar paciente"
     android:textSize="24sp"
-    android:textStyle="bold|italic" />
+    android:textStyle="bold|italic"/>
 
 <EditText
     android:id="@+id/addPacienteNombre"
