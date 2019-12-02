@@ -11,11 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import py.com.eko.fisiocenter.Modelos.Paciente;
 import py.com.eko.fisiocenter.R;
 
-public class AdapterPacientes extends RecyclerView.Adapter<AdapterPacientes.AdapterPacientesHolder>
-        implements View.OnClickListener{
+public class AdapterPacientes extends RecyclerView.Adapter<AdapterPacientes.AdapterPacientesHolder> {
 
 
-    private View.OnClickListener listener;
+
 
     Paciente[] lista;
 
@@ -28,7 +27,7 @@ public class AdapterPacientes extends RecyclerView.Adapter<AdapterPacientes.Adap
     public AdapterPacientesHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v= LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_lista_paciente, parent,false);
-        v.setOnClickListener(this);
+
         AdapterPacientesHolder ac=new AdapterPacientesHolder(v);
 
         return ac;
@@ -54,15 +53,7 @@ public class AdapterPacientes extends RecyclerView.Adapter<AdapterPacientes.Adap
         return lista.length;
     }
 
-    @Override
-    public void onClick(View v) {
-        listener.onClick(v);
-    }
 
-
-    public void setListener(View.OnClickListener listener) {
-        this.listener = listener;
-    }
 
     public static class AdapterPacientesHolder extends RecyclerView.ViewHolder {
         TextView tvNombre;

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -31,11 +32,19 @@ public class PacienteAddEditActivity extends AppCompatActivity {
     EditText edCedula = null;
     EditText edRuc = null;
     EditText edEmail = null;
-
+    Paciente p;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paciente_add_edit);
+
+        Intent i = getIntent();
+
+        if(i.hasExtra("objeto")){
+            p = (Paciente)i.getSerializableExtra("objeto");
+            TextView title = findViewById(R.id.textAddPaciente);
+            title.setText("Editar pacientes");
+        }
 
         edNombre = findViewById(R.id.addPacienteNombre);
         edApellido = findViewById(R.id.addPacienteApellido);
@@ -45,6 +54,37 @@ public class PacienteAddEditActivity extends AppCompatActivity {
         edRuc = findViewById(R.id.addPacienteRUC);
         edEmail = findViewById(R.id.addPacienteEmail);
 
+
+        Button btnAddPaciente = findViewById(R.id.btnAddPaciente);
+
+        if(i.hasExtra("objeto")){
+            p = (Paciente)i.getSerializableExtra("objeto");
+            TextView title = findViewById(R.id.textAddPaciente);
+            title.setText("Editar paciente");
+            edNombre.setText(p.getNombre());
+            edApellido.setText(p.getApellido());
+            edFechaNacimiento.setText(p.getFechaNacimiento());
+            edTelefono.setText(p.getTelefono());
+            edCedula.setText(p.getCedula());
+            edRuc.setText(p.getRuc());
+            edEmail.setText(p.getEmail());
+
+            btnAddPaciente.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    updatePaciente();
+                }
+            });
+        }else{
+            btnAddPaciente.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    savePaciente();
+                }
+            });
+        }
+
+
         edFechaNacimiento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,13 +92,6 @@ public class PacienteAddEditActivity extends AppCompatActivity {
             }
         });
 
-        Button btnAddPaciente = findViewById(R.id.btnAddPaciente);
-        btnAddPaciente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                savePaciente();
-            }
-        });
     }
 
     private static final String CERO = "0";
@@ -122,11 +155,43 @@ public class PacienteAddEditActivity extends AppCompatActivity {
             public void onResponse(Call<Paciente> call, Response<Paciente> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(getApplicationContext(),"Exito al guardar",Toast.LENGTH_LONG).show();
-//                        Intent intentNewActivity = new Intent(FichaClinicaAddActivity.this,
-//                                FichaClinicaActivity.class);
-//                        startActivity(intentNewActivity);
+                        Intent intentNewActivity = new Intent(PacienteAddEditActivity.this,
+                                PacientesActivity.class);
+                        startActivity(intentNewActivity);
                 }else{
                     Toast.makeText(getApplicationContext(),"Error al guardar",Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Paciente> call, Throwable t) {
+                Toast.makeText(getApplicationContext(),"Error al guardar",Toast.LENGTH_LONG).show();
+                Log.w("warning", t);
+            }
+        });
+    }
+
+    private void updatePaciente(){
+        p.setNombre(edNombre.getText().toString());
+        p.setApellido(edApellido.getText().toString());
+        p.setCedula(edCedula.getText().toString());
+        p.setRuc(edRuc.getText().toString());
+        p.setTelefono(edTelefono.getText().toString());
+        p.setEmail(edEmail.getText().toString());
+        p.setFechaNacimiento(edFechaNacimiento.getText().toString() + " 00:00:00");
+        p.setTipoPersona("FISICA");
+
+        Call<Paciente> updatePaciente = Servicios.getServicio().actualizarPaciente(p);
+        updatePaciente.enqueue(new Callback<Paciente>() {
+            @Override
+            public void onResponse(Call<Paciente> call, Response<Paciente> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(getApplicationContext(),"Exito al editar",Toast.LENGTH_LONG).show();
+                    Intent intentNewActivity = new Intent(PacienteAddEditActivity.this,
+                            PacientesActivity.class);
+                    startActivity(intentNewActivity);
+                }else{
+                    Toast.makeText(getApplicationContext(),"Error al editar",Toast.LENGTH_LONG).show();
                 }
             }
 
