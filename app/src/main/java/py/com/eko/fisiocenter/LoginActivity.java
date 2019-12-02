@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.util.Log;
@@ -31,7 +32,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         usuario=findViewById(R.id.txtNombreUsuario);
+        usuario.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         password=findViewById(R.id.txtPassword);
+        password.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
         JSONObject obj = new JSONObject();
         try {

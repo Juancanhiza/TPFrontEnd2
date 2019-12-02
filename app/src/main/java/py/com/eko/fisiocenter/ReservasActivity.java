@@ -130,6 +130,16 @@ public class ReservasActivity extends AppCompatActivity {
             }
         });
 
+        Button btnAdd = findViewById(R.id.btnAgregarReserva);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentNewActivity = new Intent(ReservasActivity.this,
+                        ReservasAddActivity.class);
+                startActivity(intentNewActivity);            }
+        });
+
+
         tvNoResults = findViewById(R.id.txtNoResults);
         tvNoResults.setVisibility(View.GONE);
 
@@ -172,13 +182,18 @@ public class ReservasActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //Intent intentNewActivity = new Intent(FichaClinica.this,
-                  //      FichaClinicaAddEdit.class);
-//                Bundle b = new Bundle();
-//                b.putInt("idCategoria",array[rvFichaClinica.getChildAdapterPosition(v)].getIdCategoria());
-//                b.putString("descripcion",array[rvFichaClinica.getChildAdapterPosition(v)].getDescripcion());
-//                intentNewActivity.putExtras(b);
-                //startActivity(intentNewActivity);
+                Bundle b = new Bundle();
+                b.putInt("idReserva",array[rvReserva.getChildAdapterPosition(v)].getIdReserva());
+                //b.putString("observacion",array[rvReserva.getChildAdapterPosition(v)].getObservacion());
+                //b.putString("paciente",array[rvReserva.getChildAdapterPosition(v)].getIdCliente().getNombreCompleto());
+
+
+
+                Intent intentNewActivity = new Intent(ReservasActivity.this,
+                        ReservasEditActivity.class);
+                intentNewActivity.putExtras(b);
+                startActivity(intentNewActivity);
+
             }
         });
     }

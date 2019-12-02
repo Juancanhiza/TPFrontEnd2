@@ -16,6 +16,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiRest {
@@ -29,6 +30,10 @@ public interface ApiRest {
 
     @GET("reserva")
     Call<Lista<Reserva>> obtenerReservasFilter(@Query("ejemplo") JSONObject obj);
+
+    @GET("reserva/{id}")
+    Call<Reserva> obtenerReserva(@Path("id") int idReserva);
+
 
 
     @GET("categoria")

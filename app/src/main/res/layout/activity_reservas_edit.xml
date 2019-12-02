@@ -7,6 +7,11 @@
     android:layout_margin="10dp"
     android:orientation="vertical"
     tools:context=".ReservasEditActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Medico:">
+    </TextView>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +20,56 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:text="Asistió?">
     </TextView>
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioButton android:id="@+id/radioSi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Si"
+            android:onClick="onRadioButtonClicked"/>
+        <RadioButton android:id="@+id/radioNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:onClick="onRadioButtonClicked"/>
+    </RadioGroup>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Observaciones">
+    </TextView>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etObservaciones">
+    </EditText>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Atras"
+            android:background="@drawable/btn_style"
+            android:textColor="@color/colorBlanco"
+            android:layout_weight="1"
+            android:id="@+id/btnAtras"
+            ></Button>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Guardar"
+            android:background="@drawable/btn_style"
+            android:textColor="@color/colorBlanco"
+            android:layout_weight="1"
+            android:id="@+id/btnGurdad"
+            android:layout_marginLeft="3sp"></Button>
+    </LinearLayout>
 
 </LinearLayout>
