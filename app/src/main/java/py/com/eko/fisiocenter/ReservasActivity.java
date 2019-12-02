@@ -149,7 +149,7 @@ public class ReservasActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-
+        //TODO: traer solo del dia actual
         Call<Lista<Reserva>> callR = Servicios.getServicio().obtenerReservasSimple();
         callR.enqueue(new Callback<Lista<Reserva>>() {
             @Override

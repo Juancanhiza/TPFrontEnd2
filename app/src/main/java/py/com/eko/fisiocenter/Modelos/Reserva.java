@@ -61,6 +61,7 @@ public class Reserva implements Serializable
     @SerializedName("horaFinCadena")
     @Expose
     private String horaFinCadena;
+    
 
 
     public Reserva() {

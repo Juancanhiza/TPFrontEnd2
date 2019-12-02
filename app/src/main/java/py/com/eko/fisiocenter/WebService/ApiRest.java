@@ -5,6 +5,7 @@ import android.content.Intent;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
@@ -47,7 +48,8 @@ public interface ApiRest {
     @GET("reserva/{id}")
     Call<Reserva> obtenerReserva(@Path("id") int idReserva);
 
-
+    @GET("persona/{id}/agenda")
+    Call<List<Reserva>> obtenerAgenda(@Path("id") int idMedico, @Query("fecha") String fecha,@Query("disponible") String disponible);
 
     @GET("categoria")
     Call<Lista<Categoria>> obtenerCategorias(@Query("orderBy") String orderBy,
